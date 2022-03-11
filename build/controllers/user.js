@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editUser = exports.removeUser = exports.listUser = exports.addUser = exports.getUser = void 0;
+const express_1 = require("express");
 const User_1 = require("../models/User");
 const CustomError_1 = __importDefault(require("../helpers/error/CustomError"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
@@ -38,11 +39,10 @@ exports.addUser = (0, express_async_handler_1.default)((req, res, next) => __awa
     });
 }));
 exports.listUser = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = User_1.UserModel.find();
     const pagination = {};
     const total = yield User_1.UserModel.countDocuments();
-    const page = req.query.page || 1;
-    const limit = req.query.limit || 10;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     pagination.total = total;
@@ -58,11 +58,12 @@ exports.listUser = (0, express_async_handler_1.default)((req, res, next) => __aw
             limit: limit
         };
     }
-    const users = yield query.skip(startIndex).limit(limit);
+    const users = yield User_1.UserModel.find({}).skip(startIndex).limit(limit);
     if (users) {
         res.status(200).json({
             success: true,
             users,
+            count: express_1.query.length,
             pagination
         });
     }

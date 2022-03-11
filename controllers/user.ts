@@ -36,13 +36,13 @@ export const addUser = expressAsyncHandler(
 export const listUser = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
 
-      const query:any = UserModel.find();
+
 
       const pagination:any = {};
       const total:any = await UserModel.countDocuments();
 
-      const page:any = req.query.page || 1
-      const limit:any = req.query.limit || 10
+      const page:number = parseInt(<string>req.query.page) || 1
+      const limit:any = parseInt(<string>req.query.limit) || 10
       const startIndex:any =  (page - 1) * limit
       const endIndex:any = page * limit;
 
@@ -62,12 +62,12 @@ export const listUser = expressAsyncHandler(
           }
       }
 
-
-      const users = await query.skip(startIndex).limit(limit);
+      const users = await UserModel.find({}).skip(startIndex).limit(limit);
       if (users){
           res.status(200).json({
               success: true,
               users,
+              count: query.length,
               pagination
           });
       }else{
