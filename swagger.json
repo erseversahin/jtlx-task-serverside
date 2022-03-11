@@ -1,0 +1,361 @@
+{
+  "swaggerDefinition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "JetlexaTask",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3050/api/"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        },
+        "noauthAuth": {
+          "type": "http",
+          "scheme": "noauth"
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "User"
+      },
+      {
+        "name": "Auth"
+      },
+      {
+        "name": "Profile"
+      }
+    ],
+    "paths": {
+      "/user/": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "List All Users",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "1"
+            },
+            {
+              "name": "perPage",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              },
+              "example": "10"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/user/profile": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Get a User Profile",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/user": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Add a New User",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Fatma22",
+                    "surname": "Ersever",
+                    "location": {
+                      "type": "Point",
+                      "coordinates": [
+                        21.32,
+                        44.55
+                      ]
+                    },
+                    "email": "fatma3332@stebilisim.com",
+                    "balance": 20000,
+                    "password": "aA123456..**",
+                    "phoneNumber": "5377349292",
+                    "username": "fatmae23rsever444"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/user/622a5b1a11fcad5928b75634": {
+        "delete": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Remove a User",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/user/register": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Register",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Şahin",
+                    "surname": "Ersever",
+                    "email": "sahin@stebilisim.com",
+                    "password": "aA123456..**",
+                    "phoneNumber": "5377349292",
+                    "username": "sahinersever"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "noauthAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/auth/logout": {
+        "get": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Logout",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "username": "sahinersever",
+                    "password": "aA123456..**"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/profile/upload": {
+        "post": {
+          "tags": [
+            "Profile"
+          ],
+          "summary": "Edit Own Profile Image",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "profile_image": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/profile": {
+        "get": {
+          "tags": [
+            "Profile"
+          ],
+          "summary": "Get Own Profile",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Profile"
+          ],
+          "summary": "Edit Own Profile",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "location": {
+                      "type": "Point",
+                      "coordinates": [
+                        25.32187462,
+                        45.58732645
+                      ]
+                    },
+                    "name": "Şahin Turgut",
+                    "surname": "Ersever 2",
+                    "email": "sahin@stebilisim.com",
+                    "balance": 25000,
+                    "phoneNumber": "5377349191",
+                    "username": "sahinersever"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "See on github.",
+      "url": "https://github.com/sahinersever93/node-customer"
+    }
+  },
+  "apis": [
+    "routers/*.js"
+  ]
+}
