@@ -58,7 +58,7 @@
               "example": "1"
             },
             {
-              "name": "perPage",
+              "name": "limit",
               "in": "query",
               "schema": {
                 "type": "integer"
