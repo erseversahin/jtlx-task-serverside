@@ -7,8 +7,10 @@
     },
     "servers": [
       {
-        "url": "https://jtlx-task-serverside.herokuapp.com/api/",
-        "url": "http://localhost:3050/api/",
+        "url": [
+          "https://jtlx-task-serverside.herokuapp.com/api/",
+          "http://localhost:3050/api/"
+        ],
       }
     ],
     "components": {
