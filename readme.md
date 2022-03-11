@@ -1,6 +1,8 @@
 ## UserAPI
 
-This project was created for Jetlexa.
+This project was created for Jetlexa.<br>
+This project deploy with Heroku.
+[https://jtlx-task-serverside.herokuapp.com/](https://jtlx-task-serverside.herokuapp.com/)
 
 ![NodeJs](https://img.shields.io/badge/-NodeJS-05122A?style=flat&logo=node.js&logoColor=FFA518)
 ![ExpressJS](https://img.shields.io/badge/-ExpressJS-05122A?style=flat&logo=express&logoColor=FFA518)
