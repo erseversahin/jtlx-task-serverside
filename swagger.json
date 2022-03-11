@@ -7,7 +7,8 @@
     },
     "servers": [
       {
-        "url": "http://localhost:3050/api/"
+        "url": "https://jtlx-task-serverside.herokuapp.com/api/",
+        "url": "http://localhost:3050/api/",
       }
     ],
     "components": {
@@ -352,7 +353,7 @@
     },
     "externalDocs": {
       "description": "See on github.",
-      "url": "https://github.com/sahinersever93/node-customer"
+      "url": "https://github.com/sahinersever93/jtlx-task-serverside"
     }
   },
   "apis": [
