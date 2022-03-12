@@ -86,7 +86,7 @@ UserSchema.methods.generateJwtFromUser = function(){
         username : this.username
     }
 
-    const token = jwt.sign(payload,JWT_SECRET_KEY,{expiresIn: JWT_EXPIRE})
+    const token:string|undefined = jwt.sign(payload,JWT_SECRET_KEY,{expiresIn: JWT_EXPIRE})
 
     return token;
 }
