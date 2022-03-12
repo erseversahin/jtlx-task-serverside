@@ -20,10 +20,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 //Mongo Connection
 connectDatabase();
 app.use(express.json())
-app.use((req:Request, res:Response, next:NextFunction) => {
-    res.header("Cross-Origin-Resource-Policy", "cross-origin")
-    next()
-})
+
 //Security
 app.use(mongoSanitize());
 app.use(helmet());

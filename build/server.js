@@ -21,10 +21,6 @@ const swaggerDocs = (0, swagger_jsdoc_1.default)(swaggerDefinition);
 app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocs));
 (0, connectDatabase_1.connectDatabase)();
 app.use(express_1.default.json());
-app.use((req, res, next) => {
-    res.header("Cross-Origin-Resource-Policy", "cross-origin");
-    next();
-});
 app.use((0, express_mongo_sanitize_1.default)());
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({
