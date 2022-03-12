@@ -60,6 +60,7 @@ exports.listUser = (0, express_async_handler_1.default)((req, res, next) => __aw
     }
     const users = yield User_1.UserModel.find({}).skip(startIndex).limit(limit);
     if (users) {
+        users.map((val) => val.image = 'https://jtlx-task-serverside.herokuapp.com/uploads/' + val.image);
         res.status(200).json({
             success: true,
             users,

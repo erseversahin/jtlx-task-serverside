@@ -36,8 +36,6 @@ export const addUser = expressAsyncHandler(
 export const listUser = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
 
-
-
       const pagination:any = {};
       const total:any = await UserModel.countDocuments();
 
@@ -64,6 +62,8 @@ export const listUser = expressAsyncHandler(
 
       const users = await UserModel.find({}).skip(startIndex).limit(limit);
       if (users){
+          users.map((val) => val.image = 'https://jtlx-task-serverside.herokuapp.com/uploads/' + val.image);
+
           res.status(200).json({
               success: true,
               users,
