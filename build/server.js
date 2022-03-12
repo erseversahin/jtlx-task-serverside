@@ -27,7 +27,12 @@ app.use((req, res, next) => {
 });
 app.use((0, express_mongo_sanitize_1.default)());
 app.use((0, helmet_1.default)());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}));
 app.use((0, limitAccess_1.limitAccess)({
     windowMs: 10 * 60 * 1000,
     max: 500

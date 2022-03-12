@@ -27,7 +27,12 @@ app.use((req:Request, res:Response, next:NextFunction) => {
 //Security
 app.use(mongoSanitize());
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}));
 app.use(limitAccess({
     windowMs: 10 * 60 * 1000, // 10 Minutes
     max: 500
