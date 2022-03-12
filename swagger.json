@@ -164,7 +164,7 @@
           }
         }
       },
-      "/user/register": {
+      "/auth/register": {
         "post": {
           "tags": [
             "Auth"
