@@ -32,7 +32,7 @@ const UserSchema = new mongoose_1.Schema({
         unique: true,
         trim: true,
         lowercase: true,
-        validate: [helper_1.validateEmail, 'Please provide a valid password.'],
+        validate: [helper_1.validateEmail, 'Please provide a valid email.'],
     },
     balance: {
         type: Number,

@@ -49,7 +49,7 @@ const UserSchema = new Schema<User>({
       unique : true,
       trim: true,
       lowercase: true,
-      validate: [validateEmail, 'Please provide a valid password.'],
+      validate: [validateEmail, 'Please provide a valid email.'],
      },
   balance: {
       type: Number,
