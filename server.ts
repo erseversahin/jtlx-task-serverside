@@ -30,10 +30,7 @@ app.use(cors({
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }));
-app.use(limitAccess({
-    windowMs: 10 * 60 * 1000, // 10 Minutes
-    max: 500
-}));
+
 //Static Files
 app.use(express.static("./public"))
 

@@ -13,7 +13,6 @@ const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const routers_1 = __importDefault(require("./routers"));
 const express_mongo_sanitize_1 = __importDefault(require("express-mongo-sanitize"));
 const helmet_1 = __importDefault(require("helmet"));
-const limitAccess_1 = require("./middlewares/auth/limitAccess");
 const cors_1 = __importDefault(require("cors"));
 let swaggerOptions = fs_1.default.readFileSync("./swagger.json");
 const swaggerDefinition = JSON.parse(swaggerOptions);
@@ -28,10 +27,6 @@ app.use((0, cors_1.default)({
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
-}));
-app.use((0, limitAccess_1.limitAccess)({
-    windowMs: 10 * 60 * 1000,
-    max: 500
 }));
 app.use(express_1.default.static("./public"));
 app.use("/api", routers_1.default);
