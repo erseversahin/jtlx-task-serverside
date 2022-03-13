@@ -12,4 +12,5 @@ router.post('/login', (0, limitAccess_1.limitAccess)({
     message: "Too much login attempt, please try again after 1 minutes"
 }), auth_1.login);
 router.get('/logout', auth_2.getAccessToRoute, auth_1.logout);
+router.get('/verify', auth_2.getAccessToRoute, auth_1.verify);
 exports.default = router;

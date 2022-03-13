@@ -22,6 +22,7 @@ export const register = expressAsyncHandler(
             about: req.body.about,
             age:age,
             surname: req.body.surname,
+            password: req.body.password,
             email: req.body.email,
             bornAt: req.body.bornAt,
             balance: req.body.balance,
@@ -99,3 +100,12 @@ export const logout = (req: Request, res: Response) => {
             message: "Logged out!",
         });
 };
+export const verify = expressAsyncHandler(async (req: Request, res: Response,next: NextFunction) => {
+
+    const userData = await UserModel.findOne({ username: req.user.username });
+
+    if (!userData) {
+        return next(new CustomError("Please login.", 400));
+    }
+    sendJwt(userData, res);
+});

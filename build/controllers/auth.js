@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logout = exports.login = exports.register = void 0;
+exports.verify = exports.logout = exports.login = exports.register = void 0;
 const User_1 = require("../models/User");
 const CustomError_1 = __importDefault(require("../helpers/error/CustomError"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
@@ -33,6 +33,7 @@ exports.register = (0, express_async_handler_1.default)((req, res, next) => __aw
         about: req.body.about,
         age: age,
         surname: req.body.surname,
+        password: req.body.password,
         email: req.body.email,
         bornAt: req.body.bornAt,
         balance: req.body.balance,
@@ -93,3 +94,10 @@ const logout = (req, res) => {
     });
 };
 exports.logout = logout;
+exports.verify = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const userData = yield User_1.UserModel.findOne({ username: req.user.username });
+    if (!userData) {
+        return next(new CustomError_1.default("Please login.", 400));
+    }
+    sendJwt(userData, res);
+}));
