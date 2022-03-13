@@ -6,7 +6,28 @@ import bcrypt from "bcryptjs";
 
 export const register = expressAsyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
-        const model = new UserModel(req.body);
+
+        let age;
+        if (req.body.bornAt){
+            let now = new Date().getFullYear();
+            let burn = new Date(req.body.bornAt).getFullYear();
+            age = now-burn
+        }
+        const model = new UserModel({
+            location: {
+                type: "Point",
+                coordinates: req.body.coordinates
+            },
+            name: req.body.name,
+            about: req.body.about,
+            age:age,
+            surname: req.body.surname,
+            email: req.body.email,
+            bornAt: req.body.bornAt,
+            balance: req.body.balance,
+            phoneNumber: req.body.phoneNumber,
+            username: req.body.username,
+        });
         const addedData = await model.save();
         sendJwt(addedData, res);
     }

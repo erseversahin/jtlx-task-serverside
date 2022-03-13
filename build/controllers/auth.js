@@ -18,7 +18,27 @@ const CustomError_1 = __importDefault(require("../helpers/error/CustomError"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 exports.register = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const model = new User_1.UserModel(req.body);
+    let age;
+    if (req.body.bornAt) {
+        let now = new Date().getFullYear();
+        let burn = new Date(req.body.bornAt).getFullYear();
+        age = now - burn;
+    }
+    const model = new User_1.UserModel({
+        location: {
+            type: "Point",
+            coordinates: req.body.coordinates
+        },
+        name: req.body.name,
+        about: req.body.about,
+        age: age,
+        surname: req.body.surname,
+        email: req.body.email,
+        bornAt: req.body.bornAt,
+        balance: req.body.balance,
+        phoneNumber: req.body.phoneNumber,
+        username: req.body.username,
+    });
     const addedData = yield model.save();
     sendJwt(addedData, res);
 }));

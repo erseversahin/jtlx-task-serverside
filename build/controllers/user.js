@@ -79,13 +79,19 @@ exports.removeUser = (0, express_async_handler_1.default)((req, res, next) => __
     return next(new CustomError_1.default("There is no such user.", 400));
 }));
 exports.editUser = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let age;
+    if (req.body.bornAt) {
+        let now = new Date().getFullYear();
+        let burn = new Date(req.body.bornAt).getFullYear();
+        age = now - burn;
+    }
     const user = yield User_1.UserModel.findByIdAndUpdate(req.user.id, {
         location: {
             type: "Point",
             coordinates: req.body.coordinates
         },
         name: req.body.name,
-        about: req.body.about,
+        about: req.body.about, age: age,
         surname: req.body.surname,
         email: req.body.email,
         bornAt: req.body.bornAt,
