@@ -60,7 +60,7 @@ export const listUser = expressAsyncHandler(
           }
       }
 
-      const users = await UserModel.find({}).skip(startIndex).limit(limit);
+      const users = await UserModel.find({}).skip(startIndex).limit(limit).sort([['createdAt', -1]]);
       if (users){
 
           res.status(200).json({
@@ -102,8 +102,10 @@ export const editUser = expressAsyncHandler(
                     coordinates: req.body.coordinates
                 },
                 name: req.body.name,
+                about: req.body.about,
                 surname: req.body.surname,
                 email: req.body.email,
+                bornAt: req.body.bornAt,
                 balance: req.body.balance,
                 phoneNumber: req.body.phoneNumber,
                 username: req.body.username,
